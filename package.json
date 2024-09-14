@@ -1,0 +1,34 @@
+{
+	"author": "Matt Kenefick <matt@polymermallard.com>",
+	"description": "Swipe to begin actions for mobile devices",
+	"devDependencies": {
+		"typescript": "^4.5.5"
+	},
+	"exports": {
+		".": {
+			"import": "./build/esm/index.js",
+			"require": "./build/cjs/index.js"
+		}
+	},
+	"files": [
+		"build"
+	],
+	"keywords": [
+		"ios",
+		"fullscreen",
+		"typescript"
+	],
+	"license": "MIT",
+	"main": "build/cjs/index.js",
+	"module": "build/esm/index.js",
+	"name": "swipetobegin",
+	"scripts": {
+		"build": "npm run build:esm && npm run build:cjs",
+		"build:cjs": "tsc -p tsconfig.cjs.json",
+		"build:esm": "tsc",
+		"prepublishOnly": "npm run build",
+		"serve": "http-server src"
+	},
+	"types": "build/esm/index.d.ts",
+	"version": "1.0.0"
+}

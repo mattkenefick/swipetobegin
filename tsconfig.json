@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"declaration": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"isolatedModules": true,
+		"lib": ["dom", "es2015"],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"outDir": "./build/esm",
+		"resolveJsonModule": true,
+		"strict": true,
+		"target": "es5"
+	},
+	"exclude": ["node_modules", "build"],
+	"include": ["src"]
+}

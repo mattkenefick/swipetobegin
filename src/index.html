@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>foo | Prototype</title>
+
+		<!-- Meta -->
+		<meta charset="utf-8" />
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="theme-color" content="#000000" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover" />
+
+		<!-- Link -->
+		<link rel="icon" href="https://buck.co/favicon.ico" />
+
+		<!-- Styles -->
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+			}
+
+			main {
+				/* height: 100%; */
+				width: 100%;
+			}
+
+			.scroll-cta {
+				align-items: center;
+				display: flex;
+				font-size: 1.5rem;
+				height: 100vh;
+				justify-content: center;
+				text-align: center;
+			}
+
+			.scroll-cta p {
+				margin: 0;
+			}
+
+			.primary-content {
+				align-items: center;
+				background-color: #f0f0f0;
+				color: #333;
+				display: flex;
+				font-family: Arial, sans-serif;
+				font-size: 2em;
+				justify-content: center;
+			}
+		</style>
+	</head>
+	<body>
+		<!--
+			iPhone 14 Pro (Safari)
+
+			Landscape:
+
+			393 outerHeight
+			343 innerHeight (without tabs)
+			310 innerHeight (with tabs)
+		-->
+		<main>
+			<div class="scroll-cta">
+				<div>
+					<svg
+						height="100"
+						viewBox="0 0 30 30"
+						width="100"
+						xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<g fill="none" fill-rule="evenodd">
+							<g fill="#000" transform="translate(-315 -450)">
+								<g transform="translate(317 450)">
+									<path
+										d="m9.65830621 13.2361379c-1.0029107.9155346-1.65830621 2.0608119-1.65830621 3.2838816v1.4891358c0 1.6557618 1.77071564 4.3768012 2.077038 4.8716168.5001715.8079487 1.3397711 2.0204121 2.026686 2.92413.1680257.2210579.4823209.2597667.7011781.0913739s.2593443-.479807.0913739-.7011781c-.5409904-.7129811-1.5415638-2.1627883-1.973314-2.8476291-.2978667-.4724753-1.922962-3.0283159-1.922962-4.3383135v-1.4891358c0-.8975663.49554599-1.7617673 1.3416938-2.5538258.1495282-.1399698.3997799-.3480051.6583062-.5435227l.0020334 3.077329c0 .2799988.2279661.5.4979666.5.2799997 0 .5020333-.173463.5020334-.5v-11.5c0-.55228475.4477152-1 1-1 .5522847 0 1 .44771525 1 1v8.5c0 .2761424.2238576.5.5.5s.5-.2238576.5-.5v-2.5c0-.5522847.4477152-1 1-1 .5522847 0 1 .4477153 1 1v2.5c0 .2761424.2238576.5.5.5s.5-.2238576.5-.5v-1.5c0-.5522847.4477152-1 1-1 .5522847 0 1 .4477153 1 1v2.5c0 .2761424.2238576.5.5.5s.5-.2238576.5-.5v-1.5c0-.5522847.4477152-1 1-1 .5522847 0 1 .4477153 1 1v3.5c-.0000002 3.2747192-2.0000002 6.3953247-2 9 0 .2761424.2238576.5.5.5s.5-.2238576.5-.5c-.0000002-2.2444458 1.9999998-5.7125854 2-9v-3.5c0-1.1045695-.8954305-2-2-2-.4116588 0-.7942691.1243714-1.1123052.3375886-.2733526-.7790169-1.015293-1.3375886-1.8876948-1.3375886-.4116588 0-.7942691.1243714-1.1123052.3375886-.2733526-.7790169-1.015293-1.3375886-1.8876948-1.3375886-.3642871 0-.7058266.09739429-1 .26756439v-4.26756439c0-1.1045695-.8954305-2-2-2s-2 .8954305-2 2v7.2102334c-.4945144.2980073-.9895705.7026028-1.34372719 1.0259045z"
+										transform="matrix(.809 -.588 .588 .809 -5.467 12.174)"
+									></path>
+									<path
+										d="m4.14644661 15.1464466c.19526215-.1952621.51184463-.1952621.70710678 0 .19526215.1952622.19526215.5118446 0 .7071068l-2 2c-.19526215.1952621-.51184463.1952621-.70710678 0l-2-2c-.19526215-.1952622-.19526215-.5118446 0-.7071068.19526215-.1952621.51184464-.1952621.70710678 0l1.14644661 1.1464466v-8.7928932c0-.27614237.22385763-.5.5-.5s.5.22385763.5.5v8.7957459z"
+										transform="matrix(1 0 0 -1 0 25)"
+									></path>
+								</g>
+							</g>
+						</g>
+					</svg>
+					<p>Swipe up to begin</p>
+				</div>
+			</div>
+			<div class="primary-content">Welcome to the application.</div>
+		</main>
+
+		<script>
+			const main = document.querySelector('main');
+
+			function addCss() {
+				const css = document.createElement('style');
+				css.innerHTML = `
+					.pm-ios-scroller {
+						opacity: 0;
+					}
+
+					.scroll-cta {
+						height: 100vh;
+						left: 0;
+						position: fixed;
+						transition: opacity 0.75s ease-in-out;
+						top: 0;
+						width: 100vw;
+					}
+
+					.primary-content {
+						height: 100vh;
+						left: 0;
+						position: fixed;
+						top: 0;
+						width: 100vw;
+					}
+
+					html.state-fullscreen .scroll-cta,
+					html.state-fullscreen .pm-ios-scroller {
+						opacity: 0;
+						pointer-events: none;
+					}
+
+					html.fullscreen-ready .scroll-cta,
+					html:not(.state-fullscreen) .primary-content {
+						display: none;
+					}
+
+					html.state-fullscreen body {
+						overflow: hidden;
+					}
+
+					html.state-fullscreen,
+					html.state-fullscreen body {
+						-webkit-overflow-scrolling: touch;
+						overflow: hidden;
+					}
+
+					html.state-fullscreen .primary-content {
+						opacity: 0.0;
+						transition: opacity 0.25s ease-in-out;
+					}
+
+					html.fullscreen-ready .primary-content {
+						opacity: 1;
+					}
+				`;
+
+				document.head.appendChild(css);
+			}
+
+			function addScrollableContent(targetElement) {
+				const div = document.createElement('div');
+				div.classList.add('pm-ios-scroller');
+				div.innerHTML = '<p>.</p>'.repeat(50);
+				targetElement.prepend(div);
+			}
+
+			function startScrollTest(threshold = 3, interval = 250) {
+				let sameScroll = 0;
+				let lastScroll = 0;
+
+				return new Promise((resolve) => {
+					let scrollCheck = setInterval(() => {
+						if (window.scrollY === 0) return;
+
+						sameScroll += window.scrollY !== lastScroll ? 0 : 1;
+						lastScroll = window.scrollY;
+
+						if (sameScroll > threshold) {
+							clearInterval(scrollCheck);
+							resolve();
+						}
+					}, interval);
+				});
+			}
+
+			function checkFullscreen(disableTouchMove = true) {
+				if (window.innerHeight === window.outerHeight) {
+					document.documentElement.classList.add('state-fullscreen');
+					window.scrollTo(0, document.body.scrollHeight);
+
+					if (disableTouchMove) {
+						// using passive with default is a hack that works
+						document.body.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+					}
+				}
+			}
+
+			function run(targetElement) {
+				targetElement || (targetElement = document.querySelector('main'));
+
+				// Add CSS to head
+				addCss();
+
+				// Delay prevents the browser from jumping back to scroll position
+				setTimeout(() => addScrollableContent(targetElement), 100);
+
+				// Listen for scroll events
+				window.addEventListener('scroll', checkFullscreen);
+				window.addEventListener('resize', checkFullscreen);
+
+				return new Promise((resolve) => {
+					// Listen for movement
+					startScrollTest().then(() => {
+						window.removeEventListener('scroll', checkFullscreen);
+						window.removeEventListener('resize', checkFullscreen);
+						document.documentElement.classList.add('fullscreen-ready');
+						resolve();
+					});
+				});
+			}
+
+			run().then(() => {
+				console.log('The application is ready.');
+			});
+		</script>
+	</body>
+</html>
