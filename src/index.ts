@@ -126,17 +126,29 @@ function Handle_OnDocumentChange(e: Event) {
 }
 
 /**
+ * @type interface
+ */
+export interface ISwipeOptions {
+	callback?: () => void;
+	landscapeOnly?: boolean;
+	targetElement?: HTMLElement;
+}
+
+/**
  * @param HTMLElement targetElement
  * @param boolean landscapeOnly
  * @return Promise<void>
  */
-export function waitForSwipe(targetElement?: HTMLElement, landscapeOnly: boolean = true): Promise<void> {
-	targetElement = targetElement || (document.querySelector('main') as HTMLElement);
+export function waitForSwipe(options: ISwipeOptions): Promise<void> {
+	const targetElement = options.targetElement || (document.querySelector('main') as HTMLElement);
+	const landscapeOnly = typeof options.landscapeOnly === 'undefined' ? true : options.landscapeOnly;
+	const callback = options.callback || (() => {});
 
 	// Add CSS to head
 	addCss();
 
 	return new Promise((resolve, reject) => {
+		// Reject if not landscape mode
 		if (window.innerHeight >= window.innerWidth && landscapeOnly) {
 			reject('This only works in the requested landscape mode');
 			return;
@@ -166,4 +178,36 @@ export function waitForSwipe(targetElement?: HTMLElement, landscapeOnly: boolean
 			resolve();
 		});
 	});
+}
+
+/**
+ * @param ISwipeOptions options
+ * @return void
+ */
+export function waitForSwipeOnLandscape(options: ISwipeOptions): void {
+	/**
+	 * @return void
+	 */
+	async function onLandscape() {
+		// Wait for user to swipe up
+		await waitForSwipe({
+			landscapeOnly: true,
+		});
+
+		// Disable mobile taps and whatnot
+		options.callback && options.callback();
+
+		// Disable landscape mode
+		window.removeEventListener('resize', onLandscape);
+	}
+
+	// If it's landscape already, just run the callback
+	if (window.innerWidth > window.innerHeight) {
+		onLandscape();
+	}
+
+	// Otherwise wait for the device to change
+	else {
+		window.addEventListener('resize', onLandscape);
+	}
 }
