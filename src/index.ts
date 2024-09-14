@@ -4,6 +4,11 @@
 function addCss(): void {
 	const css = document.createElement('style');
 	css.innerHTML = `
+		html, body {
+			/* Height 100% breaks iOS because it reduces viewport size */
+			height: auto;
+		}
+
         .pm-ios-scroller {
             opacity: 0;
         }
@@ -82,15 +87,10 @@ function addScrollableContent(targetElement: HTMLElement): void {
  */
 function startScrollTest(threshold: number = 3, interval: number = 250): Promise<void> {
 	let sameScroll = 0;
-	let lastScroll = 0;
 
 	return new Promise((resolve) => {
 		let scrollCheck = setInterval(() => {
-			if (window.scrollY === 0) return;
-
-			sameScroll += window.scrollY !== lastScroll ? 0 : 1;
-			lastScroll = window.scrollY;
-
+			sameScroll += window.innerHeight !== window.outerHeight ? 0 : 1;
 			if (sameScroll > threshold) {
 				clearInterval(scrollCheck);
 				resolve();
@@ -106,7 +106,9 @@ function startScrollTest(threshold: number = 3, interval: number = 250): Promise
 function checkFullscreen(disableTouchMove: boolean = true): void {
 	if (window.innerHeight === window.outerHeight) {
 		document.documentElement.classList.add('state-fullscreen');
-		window.scrollTo(0, document.body.scrollHeight);
+
+		// mk: Using scrollHeight here will sometimes forever scroll
+		window.scrollTo(0, window.innerHeight);
 
 		if (disableTouchMove) {
 			// using passive with default is a hack that works
