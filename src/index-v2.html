@@ -98,17 +98,15 @@
 		</main>
 
 		<script type="module">
-			import { waitForSwipe } from './ios.js';
+			import { waitForSwipeOnLandscape } from '../build/esm/index.js';
 
 			const main = document.querySelector('main');
 
-			waitForSwipe(main)
-				.then(() => {
-					console.log('We are ready');
-				})
-				.catch((error) => {
-					console.error(error);
-				});
+			waitForSwipeOnLandscape({
+				callback: () => {
+					console.log('we swiped');
+				},
+			});
 		</script>
 	</body>
 </html>

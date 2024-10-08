@@ -167,14 +167,17 @@ export function waitForSwipe(options: ISwipeOptions): Promise<void> {
 		setTimeout(() => addScrollableContent(targetElement!), 100);
 
 		// Listen for scroll events
+		window.addEventListener('orientationchange', Handle_OnDocumentChange);
 		window.addEventListener('scroll', Handle_OnDocumentChange);
 		window.addEventListener('resize', Handle_OnDocumentChange);
 
 		// Listen for movement
 		startScrollTest().then(() => {
+			window.removeEventListener('orientationchange', Handle_OnDocumentChange);
 			window.removeEventListener('scroll', Handle_OnDocumentChange);
 			window.removeEventListener('resize', Handle_OnDocumentChange);
 			document.documentElement.classList.add('fullscreen-ready');
+			checkFullscreen();
 			resolve();
 		});
 	});

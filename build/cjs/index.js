@@ -124,13 +124,16 @@ function waitForSwipe(options) {
         // Delay prevents the browser from jumping back to scroll position
         setTimeout(function () { return addScrollableContent(targetElement); }, 100);
         // Listen for scroll events
+        window.addEventListener('orientationchange', Handle_OnDocumentChange);
         window.addEventListener('scroll', Handle_OnDocumentChange);
         window.addEventListener('resize', Handle_OnDocumentChange);
         // Listen for movement
         startScrollTest().then(function () {
+            window.removeEventListener('orientationchange', Handle_OnDocumentChange);
             window.removeEventListener('scroll', Handle_OnDocumentChange);
             window.removeEventListener('resize', Handle_OnDocumentChange);
             document.documentElement.classList.add('fullscreen-ready');
+            checkFullscreen();
             resolve();
         });
     });

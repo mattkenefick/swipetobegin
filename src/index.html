@@ -208,13 +208,16 @@
 				// Listen for scroll events
 				window.addEventListener('scroll', checkFullscreen);
 				window.addEventListener('resize', checkFullscreen);
+				window.addEventListener('orientationchange', checkFullscreen);
 
 				return new Promise((resolve) => {
 					// Listen for movement
 					startScrollTest().then(() => {
 						window.removeEventListener('scroll', checkFullscreen);
 						window.removeEventListener('resize', checkFullscreen);
+						window.remove('orientationchange', checkFullscreen);
 						document.documentElement.classList.add('fullscreen-ready');
+						checkFullscreen();
 						resolve();
 					});
 				});
